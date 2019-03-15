@@ -42,4 +42,24 @@ public class Container {
     public String toString() {
         return "Container[(" + x1 +"," + y1 + "),(" + x2 +"," + y2 +")]";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Container)){return false;}
+
+        Container container = (Container) o;
+
+        return container.x1 == this.x1 && container.x2 == this.x2 && container.y1 == this.y1 && container.y2 == this.y2;
+    }
+
+    @Override
+    public int hashCode() {
+        int hashcode = 17;
+        hashcode = 31*hashcode +this.x1;
+        hashcode = 31 * hashcode + this.y1;
+        hashcode = 31 * hashcode + this.x2;
+        hashcode = 31 * hashcode + this.y2;
+        return hashcode;
+    }
 }

@@ -1,5 +1,7 @@
 package homework2;
 
+import java.util.Arrays;
+
 public class MyPolynomial {
     private double[] coeffs;
 
@@ -57,7 +59,7 @@ public class MyPolynomial {
 
     public MyPolynomial multiply(MyPolynomial right){
         int m = this.coeffs.length;
-        int n = this.coeffs.length;
+        int n = right.coeffs.length;
         double[] newCoeffs = new double[m+n-1];
         for (int i=0;i<m;i++){
             for(int j=0;j<n;j++){
@@ -66,6 +68,25 @@ public class MyPolynomial {
         }
         MyPolynomial newPol = new MyPolynomial(newCoeffs);
         return newPol;
+
+
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MyPolynomial)){return false;}
+
+        MyPolynomial mp1 = (MyPolynomial) o;
+
+        return Arrays.equals(this.coeffs,mp1.coeffs);
+    }
+
+    @Override
+    public int hashCode() {
+        int hashcode = 17;
+        hashcode = 31*hashcode+Arrays.hashCode(coeffs);
+        return hashcode;
+
+    }
 }
